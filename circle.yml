@@ -8,6 +8,24 @@ jobs:
     working_directory: ~/workspace
 
     steps:
+      - run:
+        name: Install V23 Emulator
+        command: sdkmanager "system-images;android-23;google_apis;armeabi-v7a"
+          environment:
+            TERM: dumb
+
+      - run:
+        name: Create Emulator
+        command: echo no | avdmanager create avd --name testAVD --package 'system-images;android-23;google_apis;armeabi-v7a'
+          environment:
+            TERM: dumb
+
+      - run:
+        name: Start Emulator
+        command: emulator -avd testAVD
+          environment:
+            TERM: dumb
+
       - checkout
 
       - run:
