@@ -1,0 +1,23 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: bitriseio/docker-android
+
+    working_directory: ~/workspace
+
+    steps:
+      - checkout
+
+      - run:
+          name: Unit Test
+          command: ./gradlew test
+          environment:
+            TERM: dumb
+
+      - run:
+          name: Instrumentation Test
+          command: ./gradlew connectedCheck
+          environment:
+            TERM: dumb
