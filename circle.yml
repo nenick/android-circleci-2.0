@@ -15,6 +15,12 @@ jobs:
             TERM: dumb
 
       - run:
+          name: Show contents
+          command: echo $PATH; ls $ANDROID_HOME/tools/bin
+          environment:
+            TERM: dumb
+
+      - run:
           name: Create Emulator
           command: echo no | avdmanager create avd --name testAVD --package 'system-images;android-23;google_apis;armeabi-v7a'
           environment:
