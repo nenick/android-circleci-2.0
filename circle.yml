@@ -15,14 +15,14 @@ jobs:
             TERM: dumb
 
       - run:
-          name: Show contents
-          command: echo $PATH; ls $ANDROID_HOME/tools/bin
+          name: Show targets
+          command: android list targets
           environment:
             TERM: dumb
 
       - run:
           name: Create Emulator
-          command: echo no | avdmanager create avd --name testAVD --package 'system-images;android-23;google_apis;armeabi-v7a'
+          command: echo no | android create avd -n testAVD -t $(android list targets | grep android-23 | cut -d" " -f2)
           environment:
             TERM: dumb
 
