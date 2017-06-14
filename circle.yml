@@ -22,7 +22,7 @@ jobs:
 
       - run:
           name: Create Emulator
-          command: echo no | android create avd -n testAVD -t $(android list targets | grep android-23 | cut -d" " -f2)
+          command: echo no | android create avd -n testAVD -t $(android list targets | grep android-23 | cut -d" " -f2) --abi google_apis/armeabi-v7a
           environment:
             TERM: dumb
 
