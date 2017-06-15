@@ -10,7 +10,7 @@ jobs:
     steps:
       - run:
           name: Install Missing v23 Emulator
-          command: sdkmanager "system-images;android-23;default;x86" --verbose
+          command: sdkmanager "system-images;android-23;default;x86_64" --verbose
           environment:
             TERM: dumb
 
