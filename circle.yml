@@ -28,7 +28,7 @@ jobs:
 
       - run:
           name: Start Emulator
-          command: emulator -avd testAVD
+          command: emulator -avd testAVD -force-32bit
           environment:
             TERM: dumb
 
