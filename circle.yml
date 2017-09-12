@@ -12,31 +12,31 @@ jobs:
     steps:
 
       - run:
-          name: Lists existing targets or virtual devices.
-          command: sdkmanager list
+          name: Lists installed targets
+          command: android list target
           environment:
             TERM: dumb
 
       - run:
-          name: List all available sdk modules for install
+          name: List available targets and other sdk modules
           command: sdkmanager --list --include_obsolete --verbose
           environment:
             TERM: dumb
 
       - run:
-          name: Install not preinstalled emulator.
+          name: Install custom system image
           command: sdkmanager "system-images;android-23;google_apis;armeabi-v7a"
           environment:
             TERM: dumb
 
       - run:
-          name: Create Emulator
+          name: Create avd
           command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-23;google_apis;armeabi-v7a"
           environment:
             TERM: dumb
 
       - run:
-          name: Start Emulator
+          name: Start emulator
           command: emulator -avd testEmulator
           environment:
             TERM: dumb
@@ -44,13 +44,13 @@ jobs:
       - checkout
 
       - run:
-          name: Unit Test
+          name: Unit testing
           command: ./gradlew test
           environment:
             TERM: dumb
 
       - run:
-          name: Instrumentation Test
+          name: Instrumentation testing
           command: ./gradlew connectedCheck
           environment:
             TERM: dumb
