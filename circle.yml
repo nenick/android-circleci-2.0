@@ -37,7 +37,8 @@ jobs:
 
       - run:
           name: Start emulator
-          command: emulator -avd testEmulator -force-32bit
+          command: /opt/android-sdk-linux/emulator/emulator -avd testEmulator
+          background: true
           environment:
             TERM: dumb
 
