@@ -1,34 +1,43 @@
+# CircleCi configuration version
 version: 2
 
 jobs:
   build:
     docker:
-      - image: bitriseio/docker-android
+      # specific environment version to avoid incompatible updates
+      - image: bitriseio/docker-android:v2017_09_09-06_45-b744
 
     working_directory: ~/workspace
 
     steps:
+
       - run:
-          name: Install Missing v23 Emulator
-          command: sdkmanager "system-images;android-23;default;x86" --verbose
+          name: Lists existing targets or virtual devices.
+          command: sdkmanager list
           environment:
             TERM: dumb
 
       - run:
-          name: Show targets
-          command: android list targets
+          name: List all available sdk modules for install
+          command: sdkmanager --list --include_obsolete --verbose
+          environment:
+            TERM: dumb
+
+      - run:
+          name: Install not preinstalled emulator.
+          command: sdkmanager "system-images;android-23;google_apis;armeabi-v7a"
           environment:
             TERM: dumb
 
       - run:
           name: Create Emulator
-          command: echo no | android create avd -n testAVD -t $(android list targets | grep android-23 | cut -d" " -f2) --abi default/x86
+          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-23;google_apis;armeabi-v7a"
           environment:
             TERM: dumb
 
       - run:
           name: Start Emulator
-          command: emulator -avd testAVD -force-32bit
+          command: emulator -avd testEmulator
           environment:
             TERM: dumb
 
