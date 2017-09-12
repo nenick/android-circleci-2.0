@@ -42,13 +42,13 @@ jobs:
           environment:
             TERM: dumb
 
+      - checkout
+
       - run:
           name: Wait for emulator
           command: ./android-wait-for-boot.sh
           environment:
             TERM: dumb
-
-      - checkout
 
       - run:
           name: Unit testing
