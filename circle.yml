@@ -23,21 +23,22 @@ jobs:
           environment:
             TERM: dumb
 
-      - run:
-          name: Install custom system image
-          command: sdkmanager "system-images;android-23;google_apis;armeabi-v7a"
-          environment:
-            TERM: dumb
+      #- run:
+      #    name: Install custom system image
+      #    command: sdkmanager "system-images;android-23;google_apis;armeabi-v7a"
+      #    environment:
+      #      TERM: dumb
 
       - run:
           name: Create avd
-          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-23;google_apis;armeabi-v7a"
+       #   command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-23;google_apis;armeabi-v7a"
+          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-26;default;armeabi-v7a"
           environment:
             TERM: dumb
 
       - run:
           name: Start emulator
-          command: /opt/android-sdk-linux/emulator/emulator -avd testEmulator
+          command: /opt/android-sdk-linux/emulator/emulator -avd testEmulator -no-audio -no-window
           background: true
           environment:
             TERM: dumb
