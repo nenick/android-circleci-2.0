@@ -51,6 +51,12 @@ jobs:
             TERM: dumb
 
       - run:
+          name: Remove lock screen
+          command: adb shell input keyevent 82
+          environment:
+            TERM: dumb
+
+      - run:
           name: Unit testing
           command: ./gradlew test
           environment:
