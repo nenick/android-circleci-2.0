@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Create avd
        #   command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-23;google_apis;armeabi-v7a"
-          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-26;default;x86"
+          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-26;google_apis;x86"
           environment:
             TERM: dumb
 
