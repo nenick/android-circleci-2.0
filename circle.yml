@@ -5,7 +5,7 @@ jobs:
   build:
     docker:
       # specific environment version to avoid incompatible updates
-      - image: bitriseio/docker-android:v2017_09_09-06_45-b744
+      - image: bitriseio/docker-android:v2018_01_13-09_18-b952
 
     working_directory: ~/workspace
 
@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Create avd
        #   command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-23;google_apis;armeabi-v7a"
-          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-24;default;armeabi-v7a"
+          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-26;default;x86"
           environment:
             TERM: dumb
 
